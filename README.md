@@ -22,7 +22,7 @@ This demo app is built in React with the following features:
 - styling
 - fetch data from real APIs
 - move babel configuration to .babelrc
-- clean up code
+- clean up code and fix bugs
 - authentication
 - and ...
 
