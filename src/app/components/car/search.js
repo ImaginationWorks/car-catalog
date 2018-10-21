@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import {Link} from "react-router-dom";
 import _ from 'lodash';
 
 import {
@@ -11,7 +10,6 @@ import {
   modelsOfMakerSelector
 } from '../../../redux/selectors/car.selector';
 import {
-  fetchCars,
   fetchMakers,
   fetchModelsOfMaker
 } from '../../../services/car.service';
@@ -19,35 +17,44 @@ import {
 import Page from '../page';
 import Loading from '../common/loading';
 
-import './index.css';
+import './search.css';
 
 
 // Do not call search cars API more than 1 time in 300 ms.
 const timeOutInterval = 300;
 
-const CarDetailsLink = ({ to, text }) => (
-  <li className='search-result-list__car-details-link'>
-    <Link to={to}>{text}</Link>
-  </li>
-);
-
-class Cars extends Component {
+class SearchCar extends Component {
   static propTypes = {
     cars: PropTypes.object.isRequired,
     makers: PropTypes.object.isRequired,
     modelsOfMaker: PropTypes.object.isRequired,
-    fetchCars: PropTypes.func.isRequired,
     fetchMakers: PropTypes.func.isRequired,
     fetchModelsOfMaker: PropTypes.func.isRequired
   };
 
   state = {
-    selectedMakerId: undefined,
-    selectedModelId: undefined,
+    filters: {
+      selectedMakerId: -1,
+      selectedModelId: -1,
+    },
+    search: {
+      enabled: false,
+      fired: false
+    }
   };
 
   componentWillMount() {
     this.props.fetchMakers();
+  }
+
+  componentDidUpdate() {
+    const {
+      filters: { selectedMakerId, selectedModelId },
+      search: { fired }
+    } = this.state;
+    if (fired && selectedMakerId !== -1 && selectedModelId !== -1) {
+      this.props.history.push(`/make/models/${selectedModelId}`);
+    }
   }
 
   componentDidMount() {
@@ -55,21 +62,21 @@ class Cars extends Component {
   }
 
   render() {
-    const { cars, makers, modelsOfMaker } = this.props;
+    const { makers, modelsOfMaker } = this.props;
     if (_.isEmpty(makers) && !modelsOfMaker) {
       return <Loading/>;
     }
 
-    const { selectedMakerId, selectedModelId } = this.state;
+    const { filters: { selectedMakerId, selectedModelId }, search: { enabled } } = this.state;
 
     return (
       <Page
         id="cars"
         title='Cars'
-        className='Cars page'
-        description={`Car list Page`}
+        className='search-page'
+        description={`Car Search Page`}
       >
-        <p className='car-list-page__title'>Find your next car, please filter by maker and model.</p>
+        <p className='search-page__title'>Please select the maker and model to search</p>
         <div className="search col-md-8 col-xs-12">
           <div className='search__criteria search__criteria_maker col-md-4 col-xs-12'>
             <span className='search__criteria_title'>Maker: </span>
@@ -90,45 +97,50 @@ class Cars extends Component {
               })}
             </select>
           </div>
-        </div>
-        <div className="search-result col-md-8 col-xs-12">
-          <ul className='search-result-list'>
-            {cars.map((car, index) => {
-              return <CarDetailsLink key={index} to={`/make/models/${car.id}`} text={`${car.maker.name} - ${car.name}`} />;
-            })}
-          </ul>
+          <button type="button" className='search__button btn btn-info col-md-4 col-xs-12' disabled={!enabled} onClick={this._onSearchButtonClick}>Search</button>
         </div>
       </Page>
     );
   }
 
   _searchCars = () => {
-    const { fetchCars } = this.props;
-    const { selectedMakerId, selectedModelId } = this.state;
-    fetchCars({ makerId: selectedMakerId === -1 ? undefined : selectedMakerId, modelId: selectedModelId === -1 ? undefined : selectedModelId });
+    const { search } = this.state;
+    search.fired = true;
+    this.setState({
+      search
+    });
   };
 
   _onFilterSelectedMakerIdChange = (event) => {
+    const { filters, search } = this.state;
 
     const makerId = event.target.value;
-    const selectedMakerId = makerId === -1 ? -1 : makerId;
-    const selectedModelId = -1;
+    filters.selectedMakerId = makerId;
+    filters.selectedMakerId = makerId === -1 ? -1 : filters.selectedMakerId;
+    filters.selectedModelId = -1;
 
+    search.enabled = false;
 
     this.setState({
-      selectedMakerId,
-      selectedModelId
+      filters,
+      search
     });
 
     this.props.fetchModelsOfMaker(makerId);
-    this._searchCars();
   };
 
   _onFilterSelectedModelIdChange = (event) => {
-    const selectedModelId = event.target.value;
+    const { filters, search } = this.state;
+    const modelId = event.target.value;
+    filters.selectedModelId = modelId;
+    search.enabled = modelId !== -1 && filters.selectedMakerId !== -1;
     this.setState({
-      selectedModelId
+      filters,
+      search
     });
+  };
+
+  _onSearchButtonClick = () => {
     this._searchCars();
   };
 }
@@ -140,10 +152,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ fetchCars, fetchMakers, fetchModelsOfMaker }, dispatch);
+  bindActionCreators({ fetchMakers, fetchModelsOfMaker }, dispatch);
 
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Cars)
+)(SearchCar)

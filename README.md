@@ -21,6 +21,7 @@ This demo app is built in React with the following features:
 - Tests
 - styling
 - fetch data from real APIs
+- alerting
 - move babel configuration to .babelrc
 - clean up code and fix bugs
 - authentication

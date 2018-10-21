@@ -2,6 +2,10 @@ export const carsSelector = (state) => ({
   cars: state.car.list
 });
 
+export const searchCarResultSelector = (state) => ({
+  searchedCar: state.car.searchedCar
+});
+
 export const carMakersSelector = (state) => ({
   makers: state.car.makers
 });

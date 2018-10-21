@@ -44,7 +44,7 @@ const fetchModelsOfMaker = (makerId) => {
 const fetchCars = ({ makerId, modelId }) => {
   return async function (dispatch) {
     try {
-      const payload = await request(apiPath.searchCars(makerId, modelId), {});
+      const payload = await request(apiPath.fetchCars(makerId, modelId), {});
       if (_.isEmpty(payload.models) && _.isEmpty(payload.model)) {
         // return dispatch(errorAlert('No car was matched the search criteria.'));
         return null; // TODO: implement alerting and dispatch errorAlert
@@ -56,6 +56,8 @@ const fetchCars = ({ makerId, modelId }) => {
     }
   };
 };
+
+const searchCars = (makerId, modelId) => fetchCars({ makerId, modelId });
 
 const fetchCar = (id) => {
   return async function (dispatch) {
@@ -94,6 +96,7 @@ export {
   fetchMakers,
   fetchModelsOfMaker,
   fetchCars,
+  searchCars,
   fetchCar,
   fetchCarOfWeek
 }

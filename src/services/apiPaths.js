@@ -12,8 +12,8 @@ const modelsOfMaker = (makerId) => `${makers}/${makerId}/models`;
 
 const carOfWeek = `${models}/car-of-week`;
 
-const searchCars = (makerId, modelId) => {
-  return `${modelsOfMaker(makerId)}/${modelId ? modelId : ''}`;
+const fetchCars = (makerId, modelId) => {
+  return makerId ? `${modelsOfMaker(makerId)}/${modelId ? modelId : ''}` : models;
 };
 
 
@@ -24,5 +24,5 @@ export default {
   maker,
   carOfWeek,
   modelsOfMaker,
-  searchCars
+  fetchCars
 }

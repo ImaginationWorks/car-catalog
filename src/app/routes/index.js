@@ -12,7 +12,13 @@ const Homepage = Loadable({
 });
 
 const Cars = Loadable({
-  loader: () => import('../components/car'),
+  loader: () => import('../components/car/index'),
+  loading: () => null,
+  modules: ['cars']
+});
+
+const SearchCar = Loadable({
+  loader: () => import('../components/car/search'),
   loading: () => null,
   modules: ['cars']
 });
@@ -28,8 +34,8 @@ export default () => (
   <Switch>
     <Route exact path="/" component={Homepage} />
     <Route exact path="/cars" component={Cars} />
-    <Route exact path="/cars/:id" component={CarDetails} />
-    <Route exact path="/search" component={Cars} />
+    <Route exact path="/make/models/:id" component={CarDetails} />
+    <Route exact path="/search" component={SearchCar} />
     <Route component={NotFound} />
   </Switch>
 );
