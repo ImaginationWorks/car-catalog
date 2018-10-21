@@ -12,15 +12,19 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   - [npm run eject](#npm-run-eject)
 
 ## Design
-This app is built with the latest React and dependencies, with SSR implemented and use EBM for styling methodology. Also there is a implementation of fake data APIs which read data from json files.
+This demo app is built in React with the following features: 
+- SSR implemented.
+- use EBM for styling methodology.
+- a fake data APIs which reads data from json files is provided.
 
 ## Future improvements
 - Tests
 - styling
-- authentication
 - fetch data from real APIs
 - move babel configuration to .babelrc
 - clean up code
+- authentication
+- and ...
 
 ## Folder Structure
 
@@ -82,12 +86,12 @@ Launches the test runner in the interactive watch mode.<br>
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br>
+The build is minified and the file names include the hashes.<br>
 Your app is ready to be deployed!
 
 ### `npm run serve`
 
-run the production app in local.
+run the production app in local env.
 
 ### `npm run lint`
 
