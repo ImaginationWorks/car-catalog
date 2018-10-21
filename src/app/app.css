@@ -1,0 +1,42 @@
+.app {
+  text-align: center;
+}
+
+.header {
+  background-color: #222;
+  height: auto;
+  padding: 20px;
+  color: white;
+}
+
+.header__title {
+  margin-top: 0px;
+  font-size: 1.5em;
+}
+
+.header__links {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  justify-content: center;
+}
+
+.header__links_current_yes a {
+  color: white;
+  font-weight: bold;
+}
+
+.header__links_current_no a {
+  padding: 10px;
+  color: lightGray;
+  text-decoration: none;
+}
+
+.header__links_current_yes .header__links_current_no a:hover {
+  color: white;
+}
+
+.app-content {
+  margin-top: 20px;
+}

@@ -1,0 +1,12 @@
+.car-of-the-Week {
+  text-align: center;
+  background-color: lightgrey;
+  width: 60%;
+  margin: 10px 20%;
+}
+
+.car-of-the-Week__title {
+  margin-top: 0px;
+  font-size: 1.2em;
+  color: chocolate;
+}

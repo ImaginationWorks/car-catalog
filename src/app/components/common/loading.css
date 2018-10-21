@@ -1,0 +1,12 @@
+.loading {
+  text-align: center;
+}
+
+.loading__title {
+  margin-top: 10px;
+  font-size: 1.0em;
+}
+
+.loading__progress-animation {
+
+}

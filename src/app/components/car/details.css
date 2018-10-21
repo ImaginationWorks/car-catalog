@@ -1,0 +1,34 @@
+.car-details {
+  text-align: center;
+  display: inline-block
+}
+
+.car-details__item {
+  width: 400px;
+  height: auto;
+  font-size: 1.0em;
+}
+
+.car-details__item_image {
+}
+
+.car-details__item_review {
+}
+
+.car-details__item-title {
+  font-weight: bold;
+  padding-right: 10px;
+}
+
+.car-details__item-value {
+  padding-left: 10px;
+}
+
+.car-details__item-value_price {
+  color: chocolate;
+}
+
+.car-details__item-value_price:before {
+  content: "$AUD ";
+}
+

@@ -1,0 +1,36 @@
+.search-page {
+  text-align: center;
+}
+
+.search-page__title {
+  margin-top: 0px;
+  font-size: 1.5em;
+}
+
+.search__criteria {
+  padding: 10px;
+}
+
+.search__criteria_title {
+  padding: 10px 5px;
+}
+
+.search__criteria_value {
+  padding: 10px 5px;
+}
+
+.search__button {
+  background-color: green;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.search__button:disabled {
+  background-color: lightgrey;
+  color: black;
+}
