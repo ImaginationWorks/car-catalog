@@ -28,6 +28,9 @@ const fetchMakers = () => {
 const fetchModelsOfMaker = (makerId) => {
   return async function (dispatch) {
     try {
+      if (!makerId) {
+        return dispatch(loadModelsOfMakerAction([]))
+      }
       const payload = await request(apiPath.modelsOfMaker(makerId), {});
       if (_.isEmpty(payload.models)) {
         // return dispatch(errorAlert('No models of the given maker was found.'));
@@ -56,8 +59,6 @@ const fetchCars = ({ makerId, modelId }) => {
     }
   };
 };
-
-const searchCars = (makerId, modelId) => fetchCars({ makerId, modelId });
 
 const fetchCar = (id) => {
   return async function (dispatch) {
@@ -96,7 +97,6 @@ export {
   fetchMakers,
   fetchModelsOfMaker,
   fetchCars,
-  searchCars,
   fetchCar,
   fetchCarOfWeek
 }

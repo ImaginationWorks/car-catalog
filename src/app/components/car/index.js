@@ -25,6 +25,8 @@ import './index.css';
 // Do not call search cars API more than 1 time in 300 ms.
 const timeOutInterval = 300;
 
+const defaultSelectedValue = '-1';
+
 const CarDetailsLink = ({ to, text }) => (
   <li className='search-result-list__car-details-link'>
     <Link to={to}>{text}</Link>
@@ -42,12 +44,20 @@ class Cars extends Component {
   };
 
   state = {
-    selectedMakerId: undefined,
-    selectedModelId: undefined,
+    selectedMakerId: defaultSelectedValue,
+    selectedModelId: defaultSelectedValue,
   };
 
   componentWillMount() {
     this.props.fetchMakers();
+  }
+
+  componentDidUpdate(prevState) {
+    const selectedMakerIdUpdated = this.state.selectedMakerId !== prevState.selectedMakerId;
+    const selectedModelIdUpdated = this.state.selectedModelId !== prevState.selectedModelId;
+    if (selectedMakerIdUpdated || selectedModelIdUpdated) {
+      this._searchCars();
+    }
   }
 
   componentDidMount() {
@@ -74,7 +84,7 @@ class Cars extends Component {
           <div className='search__criteria search__criteria_maker col-md-4 col-xs-12'>
             <span className='search__criteria_title'>Maker: </span>
             <select className='search__criteria_value' onChange={this._onFilterSelectedMakerIdChange} value={selectedMakerId}>
-              <option value={-1}>All</option>
+              <option value={defaultSelectedValue}>All</option>
               {_.map(makers, function (maker, index) {
                 return <option key={index} value={maker.id}>{_.capitalize(maker.name)}</option>;
               })}
@@ -84,7 +94,7 @@ class Cars extends Component {
           <div className='search__criteria search__criteria_model col-md-4 col-xs-12'>
             <span className='search__criteria_title'>Model: </span>
             <select className='search__criteria_value' onChange={this._onFilterSelectedModelIdChange} value={selectedModelId}>
-              <option value={-1}>All</option>
+              <option value={defaultSelectedValue}>All</option>
               {_.map(modelsOfMaker, function (model, index) {
                 return <option key={index} value={model.id}>{_.capitalize(model.name)}</option>;
               })}
@@ -105,14 +115,12 @@ class Cars extends Component {
   _searchCars = () => {
     const { fetchCars } = this.props;
     const { selectedMakerId, selectedModelId } = this.state;
-    fetchCars({ makerId: selectedMakerId === -1 ? undefined : selectedMakerId, modelId: selectedModelId === -1 ? undefined : selectedModelId });
+    fetchCars({ makerId: selectedMakerId === defaultSelectedValue ? undefined : selectedMakerId, modelId: selectedModelId === defaultSelectedValue ? undefined : selectedModelId });
   };
 
   _onFilterSelectedMakerIdChange = (event) => {
-
-    const makerId = event.target.value;
-    const selectedMakerId = makerId === -1 ? -1 : makerId;
-    const selectedModelId = -1;
+    const selectedMakerId = event.target.value;
+    const selectedModelId = defaultSelectedValue;
 
 
     this.setState({
@@ -120,8 +128,9 @@ class Cars extends Component {
       selectedModelId
     });
 
-    this.props.fetchModelsOfMaker(makerId);
-    this._searchCars();
+    this.props.fetchModelsOfMaker(
+      selectedMakerId === defaultSelectedValue ? undefined : selectedMakerId
+    );
   };
 
   _onFilterSelectedModelIdChange = (event) => {
@@ -129,7 +138,6 @@ class Cars extends Component {
     this.setState({
       selectedModelId
     });
-    this._searchCars();
   };
 }
 

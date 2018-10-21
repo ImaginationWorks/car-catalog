@@ -43,7 +43,7 @@ class CarSelected extends Component {
         className='car-selected'
         description={`Car Selected Page`}
       >
-        <p className='car-selected__title'>Here is the details of the searched car.</p>
+        <p className='car-selected__title'>Here is the details of the selected car.</p>
         <CarDetails car={carSelected} />
       </Page>
     );
