@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
+import { withRouter, Redirect } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import _ from 'lodash';
@@ -49,16 +50,6 @@ class SearchCar extends Component {
     this.props.fetchMakers();
   }
 
-  componentDidUpdate() {
-    const {
-      filters: { selectedMakerId, selectedModelId },
-      search: { fired }
-    } = this.state;
-    if (fired && selectedMakerId !== defaultSelectedValue && selectedModelId !== defaultSelectedValue) {
-      this.props.history.push(`/make/models/${selectedModelId}`);
-    }
-  }
-
   componentDidMount() {
     this._searchCars = _.debounce(this._searchCars, timeOutInterval);
   }
@@ -69,7 +60,11 @@ class SearchCar extends Component {
       return <Loading/>;
     }
 
-    const { filters: { selectedMakerId, selectedModelId }, search: { enabled } } = this.state;
+    const { filters: { selectedMakerId, selectedModelId }, search: { enabled, fired } } = this.state;
+
+    if (fired && selectedMakerId !== defaultSelectedValue && selectedModelId !== defaultSelectedValue) {
+      return <Redirect to={`/make/models/${selectedModelId}`}/>
+    }
 
     return (
       <Page
@@ -157,7 +152,7 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators({ fetchMakers, fetchModelsOfMaker }, dispatch);
 
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(SearchCar)
+)(SearchCar))
