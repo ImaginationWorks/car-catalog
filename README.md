@@ -23,7 +23,7 @@ This demo app is built in React with the following features:
 - fetch data from real APIs
 - alerting
 - move babel configuration to .babelrc
-- webpack, I like create aliases for source code folder and it makes imports much cleaner and easier.
+- webpack, I like 1) webpack watch, and 2) create aliases for source code folders to make imports much cleaner and easier.
 - clean up code and fix bugs
 - authentication
 - and ...
