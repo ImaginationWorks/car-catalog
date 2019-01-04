@@ -4,19 +4,19 @@ import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 
 import {
-  carSelectedSelector
-} from '../../../redux/selectors/car.selector';
+  CarSelectedSelector
+} from '../../selectors';
 import {
   fetchCar
-} from '../../../services/car.service';
+} from '../../services';
 
-import Page from "../page";
-import CarDetails from './details';
+import { Page } from '../common';
+import CarDetails from './CarDetails.component';
 
-import './carSelected.css';
+import './CarSelected.styles.css';
 
 
-class CarSelected extends Component {
+class CarSelectedComponent extends Component {
   static propTypes = {
     carSelected: PropTypes.object.isRequired,
     fetchCar: PropTypes.func.isRequired
@@ -51,7 +51,7 @@ class CarSelected extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  ...carSelectedSelector(state)
+  ...CarSelectedSelector(state)
 });
 
 const mapDispatchToProps = dispatch =>
@@ -61,4 +61,4 @@ const mapDispatchToProps = dispatch =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CarSelected);
+)(CarSelectedComponent);

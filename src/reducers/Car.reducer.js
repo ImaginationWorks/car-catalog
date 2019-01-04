@@ -1,21 +1,13 @@
-import { createAction, handleActions } from 'redux-actions';
+import { handleActions } from 'redux-actions';
 import update from 'immutability-helper';
+import {
+  CARS,
+  MAKERS,
+  MODELS_OF_MAKER,
+  CAR_OF_WEEK,
+  CAR_SELECTED
+} from '../actions/ActionTypes';
 
-
-const CARS = 'data/CARS';
-const loadCarsAction = createAction(CARS);
-
-const MAKERS = 'data/MAKERS';
-const loadMakersAction = createAction(MAKERS);
-
-const MODELS_OF_MAKER = 'data/MODELS_OF_MAKER';
-const loadModelsOfMakerAction = createAction(MODELS_OF_MAKER);
-
-const CAR_SELECTED = 'data/CAR_SELECTED';
-const selectCarAction = createAction(CAR_SELECTED);
-
-const CAR_OF_WEEK = 'data/CAR_OF_WEEK';
-const loadCarOfWeekAction = createAction(CAR_OF_WEEK);
 
 const reducer = handleActions({
   [CARS]: (state, action) => update(state, {
@@ -51,13 +43,5 @@ const reducer = handleActions({
   carOfWeek: null
 });
 
-
-export {
-  loadCarsAction,
-  loadMakersAction,
-  loadModelsOfMakerAction,
-  selectCarAction,
-  loadCarOfWeekAction
-}
 
 export default reducer;

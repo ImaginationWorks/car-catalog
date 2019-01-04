@@ -1,11 +1,11 @@
 import _ from 'lodash';
 import {
-  loadMakersAction,
   loadCarsAction,
-  loadCarOfWeekAction,
+  loadMakersAction,
+  loadModelsOfMakerAction,
   selectCarAction,
-  loadModelsOfMakerAction
-} from '../redux/reducers/car.reducer'
+  loadCarOfWeekAction
+} from '../actions/Actions';
 import request from './request';
 import apiPath from './apiPaths';
 

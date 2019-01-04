@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Page from '../page/index';
-import CarOfWeek from '../car/carOfWeek';
+import { Page } from './common';
+import CarOfWeek from './car/CarOfTheWeek.component';
 
-import './index.css';
+import './HomePage.styles.css';
 
 
 export default () => (

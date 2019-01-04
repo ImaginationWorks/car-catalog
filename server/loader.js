@@ -9,8 +9,8 @@ import {Frontload, frontloadServerRender} from 'react-frontload';
 import Loadable from 'react-loadable';
 import Helmet from 'react-helmet';
 
-import createStore from '../src/redux/store';
-import App from '../src/app/app';
+import createStore from '../src/store';
+import App from '../src/App';
 import manifest from '../build/asset-manifest.json';
 
 

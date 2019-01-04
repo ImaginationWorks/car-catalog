@@ -32,39 +32,33 @@ This demo app is built in React with the following features:
 
 ```
 car-catalog/
-  README.md
-  node_modules/
-  package.json
-  .gitignore
-  .eslintrc
-  public/
-    index.html
-    favicon.ico
-  server/
-    apis/
-      data/
-      routes/
-    config/
-      winston.js
-    index.js
-    loader.js
-    server.js
-  src/
-    app/
-      assets/
-      components/
-      routes/
-      app.css
-      app.js
-      header.js
-    redux/
-      reducers/
-      selectors/
-    services/
-    index.css
-    index.js
-    logo.svg
-    serviceWorker.js 
+    - public
+    - build
+    - node_modules
+    - src
+        |_ components
+            |_ MyComponentFolder
+                |_ MyComponent.container.js
+                |_ MyComponent.component.js // can be .jsx or .tsx
+                |_ MyComponent.styles.js
+            |_ index.js // export all components from one single source.
+        |_ actions
+        |_ reducers
+        |_ selectors
+        |_ assets
+            |_ images // folder
+            |_ fonts // folder
+        |_ tests
+        |_ services
+        |_ App.js
+        |_ index.js
+        |_ logo.svg
+        |_ serviceWorker.js 
+    - .eslintrc
+    - .eslintignore
+    - README.md
+    - package.json
+    - .gitignore
 ```
 
 ## Available Scripts
@@ -76,8 +70,6 @@ In the project directory, you can run:
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
 
 ### `npm test`
 

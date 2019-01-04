@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 
-import Header from './header';
+import Header from './Header';
 import Routes from './routes';
 
-import './app.css';
+import './App.css';
 
 
 class App extends Component {

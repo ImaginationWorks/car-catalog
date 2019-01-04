@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 
-import Loading from '../common/loading';
+import { Loading } from '../common';
 
-import './details.css';
+import './CarDetails.styles.css';
 
 
 class CarDetails extends Component {

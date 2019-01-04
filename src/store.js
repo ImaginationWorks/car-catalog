@@ -3,7 +3,7 @@ import { connectRouter, routerMiddleware } from 'connected-react-router';
 import thunk from 'redux-thunk';
 import { createBrowserHistory, createMemoryHistory } from 'history';
 
-import rootReducer from './reducers/index';
+import rootReducer from './reducers';
 
 
 export const isServer = !(

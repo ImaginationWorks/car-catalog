@@ -5,8 +5,8 @@ import Loadable from 'react-loadable';
 import { Frontload } from 'react-frontload';
 import { ConnectedRouter } from 'connected-react-router';
 
-import createStore from './redux/store';
-import App from './app/app';
+import createStore from './store';
+import App from './App';
 import './index.css';
 
 
