@@ -9,7 +9,7 @@
     "lint": "./node_modules/eslint/bin/eslint.js ./src",
     "start": "react-scripts start",
     "serve": "cross-env NODE_ENV=production node ./server/index.js",
-    "prebuild": "npm install --production",
+    "prebuild": "npm install",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "ci-test": "NODE_ENV=unittest ./node_modules/jest/bin/jest.js --runInBand --detectOpenHandles --forceExit ",
