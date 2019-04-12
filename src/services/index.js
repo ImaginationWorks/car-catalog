@@ -4,7 +4,7 @@ import {
   fetchCars,
   fetchCar,
   fetchCarOfWeek
-} from './Car.service';
+} from './car.service';
 
 
 export {

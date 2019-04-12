@@ -13,7 +13,7 @@ import {
 import {
   fetchMakers,
   fetchModelsOfMaker
-} from '../../services/car.service';
+} from '../../services';
 
 import { Loading, Page } from '../common';
 
