@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+[![Build Status](https://semaphoreci.com/api/v1/tao/car-catalog/branches/master/badge.svg)](https://semaphoreci.com/tao/car-catalog)
+
 ## Table of Contents
 
 - [Design](#design)

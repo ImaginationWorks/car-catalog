@@ -2,7 +2,19 @@
   "name": "car-catalog",
   "description": "A simple car catalog app",
   "version": "0.1.1",
+  "author": "Imaginationworks <sean@imaginationworks.com.au>",
+  "contributors": [],
   "private": true,
+  "scripts": {
+    "lint": "./node_modules/eslint/bin/eslint.js ./src",
+    "start": "react-scripts start",
+    "serve": "cross-env NODE_ENV=production node ./server/index.js",
+    "prebuild": "npm install --production",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "ci-test": "NODE_ENV=unittest ./node_modules/jest/bin/jest.js --runInBand --detectOpenHandles --forceExit ",
+    "integration-test": "npm run ci-test"
+  },
   "dependencies": {
     "@babel/core": "^7.1.2",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
@@ -38,13 +50,17 @@
     "redux-thunk": "^2.3.0",
     "winston": "^3.1.0"
   },
-  "devDependencies": {},
-  "scripts": {
-    "lint": "./node_modules/eslint/bin/eslint.js ./src",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "serve": "cross-env NODE_ENV=production node ./server/index.js"
+  "devDependencies": {
+    "jest": "^23.6.0"
+  },
+  "jest": {
+    "testRegex": "./src/__tests__/.*\\.spec\\.js$",
+    "testEnvironment": "node",
+    "setupFiles": [
+      "./src/test-setup/index.js"
+    ],
+    "setupTestFrameworkScriptFile": "./src/test-setup/pre-test.js",
+    "verbose": true
   },
   "browserslist": [
     ">0.2%",
