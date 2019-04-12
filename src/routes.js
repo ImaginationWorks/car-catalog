@@ -3,11 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
 
 import {
-  NotFound as NotFoundComponent,
-  HomePage,
-  CarSelected,
-  CarSearch,
-  Cars
+  NotFound as NotFoundComponent
 } from './components';
 
 

@@ -12,6 +12,6 @@ export default () => (
     noCrawl
   >
     <p>OOPS!</p>
-    <img src='https://atlassianblog.wpengine.com/wp-content/uploads/2017/12/404-pages_featured@2x.png'/>
+    <img src='https://atlassianblog.wpengine.com/wp-content/uploads/2017/12/404-pages_featured@2x.png' alt=''/>
   </Page>
 );
